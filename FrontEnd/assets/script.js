@@ -1,12 +1,15 @@
+//récupération de la gallerie dans le DOM du HTML
+          const gallery = document.querySelector(".gallery");
+
+//récupération de btnFilter dans le DOM du HTML
+          const btnFilter = document.getElementById("btnFilter");
+
 //récupération des projets de l'API
-async function ArchitectProjects() {
+async function fetchProjects() {
 
           const response = await fetch("http://localhost:5678/api/works");
           const projects = await response.json();
           console.log(projects);
-
-          //récupération de la gallerie dans le DOM du HTML
-          const gallery = document.querySelector(".gallery");
           
           //modification du DOM pour chaque projet
           projects.forEach(project => {
@@ -26,4 +29,47 @@ async function ArchitectProjects() {
 }
 
 //appel de la fonction
-ArchitectProjects();
+fetchProjects();
+
+//récupération des catégories des projets sur l'API
+async function fetchCategories() {
+    const response = await fetch("http://localhost:5678/api/categories");
+    const categories = await response.json();
+    console.log(categories, "catégories");
+
+    //création du bouton "tous"
+        const allButton = document.createElement("button");
+        allButton.id = "all";
+        allButton.textContent = "Tous";
+        allButton.classList.add("filter-button"); // Ajout d'une classe pour le style ou autres manipulations
+        btnFilter.appendChild(allButton);
+
+    //écoute du clic    
+
+        allButton.addEventListener("click", () => {
+            console.log ("tous les projets")
+        fetchProjects();
+        });
+
+    //création boutons des catégories
+
+    categories.forEach(category => {
+        const buttonCtg = document.createElement("button");
+
+        buttonCtg.id = category.id;
+        buttonCtg.textContent = category.name;
+        buttonCtg.classList.add("filter-button"); // Ajout d'une classe pour le style ou autres manipulations
+
+        btnFilter.appendChild(buttonCtg);
+   
+
+    buttonCtg.addEventListener("click", () => {
+    });
+  });
+}
+
+//appel de la fonction
+fetchCategories();
+
+
+
