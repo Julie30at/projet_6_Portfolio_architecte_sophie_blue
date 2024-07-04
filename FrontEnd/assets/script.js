@@ -8,9 +8,8 @@ const btnFilter = document.getElementById("btnFilter");
 async function fetchProjects(categoryId = null) {
     // Envoie une requête HTTP GET à l'API pour récupérer les projets
     const response = await fetch("http://localhost:5678/api/works");
-    //réponse en format JSON
+    //récupère la réponse en format JSON
     const projects = await response.json();
-    console.log(projects);
 
     // Efface les projets existants dans la galerie
     gallery.innerHTML = '';
@@ -48,28 +47,23 @@ fetchProjects();
 async function fetchCategories() {
     // Envoie une requête HTTP GET à l'API pour récupérer les catégories
     const response = await fetch("http://localhost:5678/api/categories");
-    //réponse en format JSON
+    //récupère la réponse en format JSON
     const categories = await response.json();
-    console.log(categories, "catégories");
 
-    // Création du bouton "Tous" pour afficher tous les projets
-    const allButton = document.createElement("button");
-    allButton.id = "all";
-    allButton.textContent = "Tous";
-    allButton.classList.add("filter-button"); // Ajout d'une classe pour le style ou autres manipulations
-    // Ajoute le bouton au conteneur des filtres
-    btnFilter.appendChild(allButton);
+    // Nettoyage des anciens boutons et de leurs écouteurs d'événements
+     btnFilter.innerHTML = '';
 
-    // Ajout d'un écouteur d'événement pour le clic sur le bouton "Tous"
-    allButton.addEventListener("click", () => {
-        console.log("Tous les projets");
-        // Appel de la fonction pour afficher tous les projets
-        fetchProjects();
-    });
+  // Création d'un Set pour stocker les catégories de manière unique
+    const categorySet = new Set();
 
-    // Parcours chaque catégorie retournée par l'API
-    categories.forEach(category => {
-        // Crée un bouton pour chaque catégorie
+    // Ajout de la catégorie "Tous" au Set
+    categorySet.add({ id: null, name: "Tous" });
+
+    // Ajout des catégories de l'API au Set
+    categories.forEach(category => categorySet.add(category));
+
+    // Création des boutons de filtres
+    categorySet.forEach(category => {
         const buttonCtg = document.createElement("button");
 
         buttonCtg.id = category.id;
