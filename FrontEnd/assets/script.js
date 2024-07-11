@@ -88,6 +88,7 @@ fetchCategories();
 document.addEventListener('DOMContentLoaded', function() {
     const loginLink = document.getElementById('infoLog'); // Sélection du lien "login"
     const editLink = document.getElementById('editLink'); // Sélection du lien "modifier"
+    const editBar = document.getElementById('editionMode');
 
     // Fonction pour mettre à jour les liens en fonction de l'état de connexion
     function updateLinks() {
@@ -103,12 +104,16 @@ document.addEventListener('DOMContentLoaded', function() {
             editLink.style.display = 'inline'; // Assurez-vous que le lien est visible
             // Ajoutez ici la logique pour ce que le lien "modifier" devrait faire
             editLink.setAttribute('href', '#'); // Exemple : définissez l'URL appropriée pour la modification des projets
+
+            editBar.style.display ='inline'; // barre d'édition visible
         } else {
             loginLink.textContent = 'login'; // Mettez à jour le texte en "login" si l'utilisateur n'est pas connecté
             loginLink.setAttribute('href', '/FrontEnd/login.html'); // Définissez l'attribut href pour la connexion
 
             // Masquer le lien "modifier"
             editLink.style.display = 'none'; // Assurez-vous que le lien est masqué
+
+            editBar.style.display = 'none'; // barre d'édition masquée
         }
     }
 
