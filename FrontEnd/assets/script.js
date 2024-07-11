@@ -8,7 +8,7 @@ const btnFilter = document.getElementById("btnFilter");
 async function fetchWorks(categoryId = null) {
     // Envoie une requête HTTP GET à l'API pour récupérer les projets
     const response = await fetch("http://localhost:5678/api/works");
-    //récupère la réponse en format JSON
+    // Récupération de la réponse au format JSON
     const projects = await response.json();
 
     // Efface les projets existants dans la galerie
@@ -44,13 +44,13 @@ async function fetchWorks(categoryId = null) {
 async function fetchCategories() {
     // Envoie une requête HTTP GET à l'API pour récupérer les catégories
     const response = await fetch("http://localhost:5678/api/categories");
-    //récupère la réponse en format JSON
+    // Récupération de la réponse au format JSON
     const categories = await response.json();
 
     // Nettoyage des anciens boutons et de leurs écouteurs d'événements
-     btnFilter.innerHTML = '';
+    btnFilter.innerHTML = '';
 
-  // Création d'un Set pour stocker les catégories de manière unique
+    // Création d'un Set pour stocker les catégories de manière unique
     const categorySet = new Set();
 
     // Ajout de la catégorie "Tous" au Set
@@ -58,6 +58,9 @@ async function fetchCategories() {
 
     // Ajout des catégories de l'API au Set
     categories.forEach(category => categorySet.add(category));
+
+    // Variable pour stocker le bouton actuellement sélectionné
+    let selectedButton = null;
 
     // Création des boutons de filtres
     categorySet.forEach(category => {
@@ -73,6 +76,18 @@ async function fetchCategories() {
         // Ajout d'un écouteur d'événement pour le clic sur chaque bouton de catégorie
         buttonCtg.addEventListener("click", () => {
             console.log(`Projets de la catégorie : ${category.name}`);
+
+            // Réinitialise le style du bouton précédemment sélectionné
+            if (selectedButton) {
+                selectedButton.style.color = ''; // Réinitialise la couleur du texte
+                selectedButton.style.background = ''; // Réinitialise la couleur de fond
+            }
+
+            // Met à jour le bouton actuellement sélectionné
+            selectedButton = buttonCtg;
+            selectedButton.style.color = 'white';
+            selectedButton.style.background = '#1D6154';
+
             // Appel de la fonction pour afficher les projets de la catégorie sélectionnée
             fetchWorks(category.id);
         });
@@ -85,6 +100,7 @@ fetchWorks();
 // Appel de la fonction pour récupérer et afficher les catégories
 fetchCategories();
 
+// Code pour la gestion de l'interface utilisateur après le chargement du DOM
 document.addEventListener('DOMContentLoaded', function() {
     const loginLink = document.getElementById('infoLog'); // Sélection du lien "login"
     const editLink = document.getElementById('editLink'); // Sélection du lien "modifier"
@@ -101,11 +117,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Afficher le lien "modifier"
-            editLink.style.display = 'inline'; // Assurez-vous que le lien est visible
+            editLink.style.display = 'visible'; // Assurez-vous que le lien est visible
             // Ajoutez ici la logique pour ce que le lien "modifier" devrait faire
             editLink.setAttribute('href', '#'); // Exemple : définissez l'URL appropriée pour la modification des projets
 
-            editBar.style.display ='inline'; // barre d'édition visible
+            editBar.style.display ='visible'; // barre d'édition visible
+
+            btnFilter.style.display ='none'; // masquer les boutons filtres
         } else {
             loginLink.textContent = 'login'; // Mettez à jour le texte en "login" si l'utilisateur n'est pas connecté
             loginLink.setAttribute('href', '/FrontEnd/login.html'); // Définissez l'attribut href pour la connexion
