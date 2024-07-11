@@ -5,7 +5,7 @@ const gallery = document.querySelector(".gallery");
 const btnFilter = document.getElementById("btnFilter");
 
 // Fonction asynchrone pour récupérer les projets de l'API
-async function fetchProjects(categoryId = null) {
+async function fetchWorks(categoryId = null) {
     // Envoie une requête HTTP GET à l'API pour récupérer les projets
     const response = await fetch("http://localhost:5678/api/works");
     //récupère la réponse en format JSON
@@ -39,9 +39,6 @@ async function fetchProjects(categoryId = null) {
         }
     });
 }
-
-// Appel initial de la fonction pour afficher tous les projets
-fetchProjects();
 
 // Fonction asynchrone pour récupérer les catégories des projets de l'API
 async function fetchCategories() {
@@ -77,10 +74,44 @@ async function fetchCategories() {
         buttonCtg.addEventListener("click", () => {
             console.log(`Projets de la catégorie : ${category.name}`);
             // Appel de la fonction pour afficher les projets de la catégorie sélectionnée
-            fetchProjects(category.id);
+            fetchWorks(category.id);
         });
     });
 }
 
+// Appel initial de la fonction pour afficher tous les projets
+fetchWorks();
+
 // Appel de la fonction pour récupérer et afficher les catégories
 fetchCategories();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loginLink = document.getElementById('infoLog'); // Sélection du lien "login"
+    const editLink = document.getElementById('editLink'); // Sélection du lien "modifier"
+
+    // Fonction pour mettre à jour les liens en fonction de l'état de connexion
+    function updateLinks() {
+        if (localStorage.getItem('token')) {
+            loginLink.textContent = 'logout'; // Mettez à jour le texte en "logout"
+            loginLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                localStorage.removeItem('token'); // Supprimez le token du localStorage pour simuler la déconnexion
+                window.location.href = 'index.html'; // Redirigez vers la page d'accueil ou une autre page après la déconnexion
+            });
+
+            // Afficher le lien "modifier"
+            editLink.style.display = 'inline'; // Assurez-vous que le lien est visible
+            // Ajoutez ici la logique pour ce que le lien "modifier" devrait faire
+            editLink.setAttribute('href', '#'); // Exemple : définissez l'URL appropriée pour la modification des projets
+        } else {
+            loginLink.textContent = 'login'; // Mettez à jour le texte en "login" si l'utilisateur n'est pas connecté
+            loginLink.setAttribute('href', '/FrontEnd/login.html'); // Définissez l'attribut href pour la connexion
+
+            // Masquer le lien "modifier"
+            editLink.style.display = 'none'; // Assurez-vous que le lien est masqué
+        }
+    }
+
+    // Appelez la fonction pour mettre à jour les liens lors du chargement de la page
+    updateLinks();
+});
