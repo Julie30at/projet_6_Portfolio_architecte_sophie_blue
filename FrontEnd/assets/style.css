@@ -245,3 +245,50 @@ footer nav ul {
 	margin: 2em
 }
 
+.login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form_connection{
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+}
+
+.form_connection label {
+	margin-top: 30px;
+	margin-bottom: 6px;
+}
+
+.form_connection #email {
+	width: 379px;
+	height: 51px;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	border: transparent;
+}
+
+.form_connection #password {
+	width: 379px;
+	height: 51px;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	border: transparent;
+}
+
+.form_connection .login_ok {
+	margin-top: 37px;
+	height: 36px;
+	border: transparent;
+}
+
+.form_connection a {
+	text-align: center;
+	text-decoration-line: underline;
+	margin-bottom: 371px;
+}
+
+.form_connection a:hover {
+	font-weight: bold;
+}
+

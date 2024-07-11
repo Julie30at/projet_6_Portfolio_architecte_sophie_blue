@@ -1,5 +1,9 @@
 // Attend que le contenu du DOM soit complètement chargé avant d'exécuter le script
 document.addEventListener('DOMContentLoaded', function() {
+    
+    const boldLogin = document.getElementById('boldLogin');
+    boldLogin.style.fontWeight ='bold';
+
     // Sélectionne le formulaire de connexion par son ID
     const loginForm = document.getElementById('loginForm');
     
