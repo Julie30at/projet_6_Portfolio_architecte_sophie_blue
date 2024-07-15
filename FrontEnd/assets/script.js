@@ -100,7 +100,7 @@ fetchWorks();
 // Appel de la fonction pour récupérer et afficher les catégories
 fetchCategories();
 
-// Code pour la gestion de l'interface utilisateur après le chargement du DOM
+//gestion de l'interface utilisateur après le chargement du DOM
 document.addEventListener('DOMContentLoaded', function() {
     const loginLink = document.getElementById('infoLog'); // Sélection du lien "login"
     const editLink = document.getElementById('editLink'); // Sélection du lien "modifier"
@@ -109,32 +109,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fonction pour mettre à jour les liens en fonction de l'état de connexion
     function updateLinks() {
         if (localStorage.getItem('token')) {
-            loginLink.textContent = 'logout'; // Mettez à jour le texte en "logout"
+            loginLink.textContent = 'logout'; // Mettre à jour le texte en "logout"
             loginLink.addEventListener('click', function(event) {
                 event.preventDefault();
-                localStorage.removeItem('token'); // Supprimez le token du localStorage pour simuler la déconnexion
-                window.location.href = 'index.html'; // Redirigez vers la page d'accueil ou une autre page après la déconnexion
+                localStorage.removeItem('token'); // Supprime le token du localStorage pour simuler la déconnexion
+                window.location.href = 'index.html'; // Redirige vers la page d'accueil
             });
 
             // Afficher le lien "modifier"
-            editLink.style.display = 'visible'; // Assurez-vous que le lien est visible
-            // Ajoutez ici la logique pour ce que le lien "modifier" devrait faire
-            editLink.setAttribute('href', '#'); // Exemple : définissez l'URL appropriée pour la modification des projets
+            editLink.style.display = 'visible'; // lien visible
+            //logique du lien "modifier" 
+            editLink.setAttribute('href', '#'); // URL appropriée pour la modification des projets
 
             editBar.style.display ='visible'; // barre d'édition visible
 
             btnFilter.style.display ='none'; // masquer les boutons filtres
         } else {
-            loginLink.textContent = 'login'; // Mettez à jour le texte en "login" si l'utilisateur n'est pas connecté
-            loginLink.setAttribute('href', '/FrontEnd/login.html'); // Définissez l'attribut href pour la connexion
+            loginLink.textContent = 'login'; // Mettre à jour le texte en "login" si l'utilisateur n'est pas connecté
+            loginLink.setAttribute('href', '/FrontEnd/login.html'); // Défini l'attribut href pour la connexion
 
-            // Masquer le lien "modifier"
-            editLink.style.display = 'none'; // Assurez-vous que le lien est masqué
+            // Masque le lien "modifier"
+            editLink.style.display = 'none'; //lien masqué
 
             editBar.style.display = 'none'; // barre d'édition masquée
         }
     }
 
-    // Appelez la fonction pour mettre à jour les liens lors du chargement de la page
+    // fonction pour mettre à jour les liens lors du chargement de la page
     updateLinks();
 });
