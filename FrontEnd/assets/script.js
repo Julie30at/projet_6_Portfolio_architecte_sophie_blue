@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
             btnFilter.style.display ='none'; // masquer les boutons filtres
         } else {
             loginLink.textContent = 'login'; // Mettre à jour le texte en "login" si l'utilisateur n'est pas connecté
-            loginLink.setAttribute('href', '/FrontEnd/login.html'); // Défini l'attribut href pour la connexion
 
             // Masque le lien "modifier"
             editLink.style.display = 'none'; //lien masqué
