@@ -32,7 +32,7 @@
 <main>
 	<div id="introduction">
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
+			<img src="./assets/images/sophie-bluel.png" alt="portrait de Sophie Bluel">
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -42,7 +42,23 @@
 		</article>
 	</div>
 	<section id="portfolio">
-		<h2 id="projectTitle">Mes Projets <a id="editLink" href="#"><i class="fa-regular fa-pen-to-square"></i>modifier</a></h2>
+		<h2 id="projectTitle">Mes Projets 
+			<a id="editLink" href="#modal"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
+		</h2>
+
+		<aside id="modal" class="modal" aria-modal="true" role="dialog">
+			<section class="modal-content">
+				<h2 class="titleModal">Galerie photo</h2>
+				<div id="modal-gallery"></div>
+				<button class="closeBtn" aria-label="Fermer">X</button>
+				<div class="galleryModal">
+					<div class="deleteBtn"></div>
+				</div>
+				<div class="greyBar"></div>
+				<button class="addProject">Ajouter une photo</button>
+			</section>
+		</aside>
+ 
 		<div id="btnFilter" class="btnFilter"></div>
 		<div class="gallery">
 		</div>
