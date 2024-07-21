@@ -1,153 +1,308 @@
-// Récupération des éléments dans le DOM
-const gallery = document.querySelector(".gallery"); // Sélectionne l'élément avec la classe "gallery"
-const btnFilter = document.getElementById("btnFilter"); // Sélectionne l'élément avec l'id "btnFilter"
-
-// Fonction asynchrone pour récupérer les projets de l'API
-async function fetchWorks(categoryId = null) {
-    const response = await fetch("http://localhost:5678/api/works"); // Envoie une requête GET à l'API pour obtenir les projets
-    const projects = await response.json(); // Convertit la réponse en format JSON
-
-    // Efface les projets existants dans la galerie
-    gallery.innerHTML = ''; // Vide le contenu actuel de l'élément galerie
-
-    // Efface les projets existants dans la galerie de la modal
-    const modalGallery = document.getElementById("modal-gallery");
-    modalGallery.innerHTML = '';
-
-    // Parcours chaque projet retourné par l'API
-    projects.forEach(work => {
-        if (categoryId === null || work.categoryId === categoryId) {
-            // Si aucune catégorie n'est sélectionnée ou si le projet appartient à la catégorie sélectionnée
-            const figure = createFigure(work); // Crée une figure pour le projet
-            gallery.appendChild(figure); // Ajoute la figure à la galerie
-            modalGallery.appendChild(figure.cloneNode(true)); // Clone pour la modal
-        }
-    });
-}
-
-// Fonction pour créer une figure pour un projet
-function createFigure(work) {
-    const figure = document.createElement("figure"); // Crée un élément figure
-    const img = document.createElement("img"); // Crée un élément img
-    const figcaption = document.createElement("figcaption"); // Crée un élément figcaption
-
-    img.src = work.imageUrl; // Définit la source de l'image
-    img.alt = work.title; // Définit le texte alternatif de l'image
-    figcaption.textContent = work.title; // Définit le texte du figcaption
-
-    figure.appendChild(img); // Ajoute l'image à la figure
-    figure.appendChild(figcaption); // Ajoute le figcaption à la figure
-
-    return figure; // Retourne la figure créée
-}
-
-// Fonction asynchrone pour récupérer les catégories des projets de l'API
-async function fetchCategories() {
-    const response = await fetch("http://localhost:5678/api/categories"); // Envoie une requête GET à l'API pour obtenir les catégories
-    const categories = await response.json(); // Convertit la réponse en format JSON
-
-    // Nettoyage des anciens boutons et de leurs écouteurs d'événements
-    btnFilter.innerHTML = ''; // Vide le contenu actuel du conteneur des filtres
-
-    // Création d'un Set pour stocker les catégories de manière unique
-    const categorySet = new Set([{ id: null, name: "Tous" }, ...categories]); // Ajoute une catégorie "Tous" et les catégories obtenues de l'API au Set
-
-    // Variable pour stocker le bouton actuellement sélectionné
-    let selectedButton = null; // Initialisation de la variable
-
-    // Création des boutons de filtres
-    categorySet.forEach(category => {
-        const buttonCtg = document.createElement("button"); // Crée un élément bouton
-
-        buttonCtg.id = category.id; // Définit l'id du bouton
-        buttonCtg.textContent = category.name; // Définit le texte du bouton
-        buttonCtg.classList.add("filter-button"); // Ajoute une classe pour le style
-
-        btnFilter.appendChild(buttonCtg); // Ajoute le bouton au conteneur des filtres
-
-        // Ajout d'un écouteur d'événement pour le clic sur chaque bouton de catégorie
-        buttonCtg.addEventListener("click", () => {
-            console.log(`Projets de la catégorie : ${category.name}`); // Affiche un message dans la console
-
-            // Mise à jour du style des boutons
-            if (selectedButton) {
-                selectedButton.style.color = ''; // Réinitialise la couleur du texte du bouton précédemment sélectionné
-                selectedButton.style.background = ''; // Réinitialise la couleur de fond du bouton précédemment sélectionné
-            }
-            selectedButton = buttonCtg; // Met à jour le bouton actuellement sélectionné
-            selectedButton.style.color = 'white'; // Change la couleur du texte du bouton sélectionné
-            selectedButton.style.background = '#1D6154'; // Change la couleur de fond du bouton sélectionné
-
-            // Afficher les projets de la catégorie sélectionnée
-            fetchWorks(category.id); // Appelle la fonction fetchWorks avec l'id de la catégorie sélectionnée
-        });
-    });
-}
-
-// Gestion de l'interface utilisateur après le chargement du DOM
+// Écouteur d'événements pour exécuter le code une fois que le DOM est complètement chargé
 document.addEventListener('DOMContentLoaded', function() {
-    const loginLink = document.getElementById('infoLog'); // Sélectionne l'élément avec l'id "infoLog"
-    const editLink = document.getElementById('editLink'); // Sélectionne l'élément avec l'id "editLink"
-    const editBar = document.getElementById('editionMode'); // Sélectionne l'élément avec l'id "editionMode"
-    const modal = document.getElementById('modal'); // Sélectionne l'élément avec l'id "modal"
-    const closeBtn = document.querySelector('.closeBtn'); // Sélectionne le premier élément avec la classe "closeBtn"
+    // Récupération des éléments dans le DOM
+    const gallery = document.querySelector(".gallery");
+    const btnFilter = document.getElementById("btnFilter");
+    const modal = document.querySelector('.modal');
+    const modal2 = document.getElementById('modal2');
+    const closeBtn = modal.querySelector('.closeBtn');
+    const closeBtn2 = modal2.querySelector('.closeBtn2');
+    const backArrow = modal2.querySelector('.backArrow');
+    const addProject = document.querySelector('.addProject');
+    const loginLink = document.getElementById('infoLog');
+    const editLink = document.getElementById('editLink');
+    const editBar = document.getElementById('editionMode');
+    const addNewProjectForm = document.getElementById('addNewProject');
+    const addPicture = document.querySelector('.addPicture');
+    const previewImage = document.getElementById('previewImage');
+    const validateNewProject = document.getElementById('btnValidate');
+   
+    // Initialisation de l'application
+    init();
 
-    // Masque la modale par défaut
-    modal.style.display = 'none'; // Définit le style d'affichage de la modale à "none"
+    // Fonction d'initialisation
+    function init() {
+        // Masque les modales par défaut
+        modal.style.display = 'none';
+        modal2.style.display = 'none';
 
-    // Afficher la modale
-    editLink.addEventListener("click", () => {
-        modal.style.display = 'block'; // Change le style d'affichage de la modale à "visible"
-        fetchWorks(); // Recharge les projets pour la modal
-        console.log("Afficher modal"); // Affiche un message dans la console
-    });
+        // Configuration des écouteurs d'événements
+        setupEventListeners();
+        // Mise à jour des liens d'édition et de connexion
+        updateLinks();
+        // Récupère et affiche les projets
+        fetchWorks();
+        // Récupère et affiche les catégories
+        fetchCategories();
 
-    // Fermer la modale
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none'; // Change le style d'affichage de la modale à "none"
-    });
+         // Supprime le token du localStorage à la fermeture de la page
+        window.addEventListener('beforeunload', () => {
+            localStorage.removeItem('token');
+        });
+    }
 
-     // Fermer la modal en cliquant à l'extérieur
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-
-     // Fermer la modal avec Échap
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            modal.style.display = 'none'; // Ferme la modal si Échap est pressée
-        }
-    });
-
-    // Met à jour les liens en fonction de l'état de connexion
-    function updateLinks() {
-        if (localStorage.getItem('token')) { // Vérifie si un token est stocké dans le localStorage
-            loginLink.textContent = 'logout'; // Change le texte du lien de connexion à "logout"
-            loginLink.addEventListener('click', function(event) {
-                event.preventDefault(); // Empêche le comportement par défaut du lien
-                localStorage.removeItem('token'); // Supprime le token du localStorage
-                window.location.href = 'index.html'; // Redirige vers la page d'accueil
-            });
-
-            // Afficher les éléments de modification
-            editLink.style.display = 'visible'; // Affiche le lien de modification
-            editBar.style.display = 'visible'; // Affiche la barre d'édition
-            btnFilter.style.display = 'none'; // Masque les boutons de filtre
-        } else {
-            loginLink.textContent = 'login'; // Change le texte du lien de connexion à "login"
-
-            // Masquer les éléments de modification
-            editLink.style.display = 'none'; // Masque le lien de modification
-            editBar.style.display = 'none'; // Masque la barre d'édition
+    // Fonction asynchrone pour récupérer les projets de l'API
+    async function fetchWorks(categoryId = null) {
+        try {
+            // Appel API pour récupérer les projets
+            const response = await fetch("http://localhost:5678/api/works");
+            // Conversion de la réponse en JSON
+            const projects = await response.json();
+            // Mise à jour de la galerie avec les projets récupérés
+            updateGallery(projects, categoryId);
+        } catch (error) {
+            // Affichage d'un message d'erreur en cas d'échec de l'appel API
+            console.error('Erreur lors de la récupération des projets:', error);
         }
     }
 
-    // Met à jour les liens lors du chargement de la page
-    updateLinks(); // Appelle la fonction pour mettre à jour les liens
+    // Fonction pour mettre à jour la galerie avec les projets
+    function updateGallery(projects, categoryId) {
+        // Efface le contenu actuel de la galerie
+        gallery.innerHTML = '';
+        // Récupération de l'élément galerie dans la modal
+        const modalGallery = document.getElementById("modal-gallery");
+        // Efface le contenu actuel de la galerie de la modal
+        modalGallery.innerHTML = '';
 
-    // Appel initial des fonctions pour afficher les projets et les catégories
-    fetchWorks(); // Appelle la fonction pour afficher les projets
-    fetchCategories(); // Appelle la fonction pour afficher les catégories
+        // Parcours chaque projet
+        projects.forEach(work => {
+            // Filtre les projets par catégorie si nécessaire
+            if (categoryId === null || work.categoryId === categoryId) {
+                // Crée une figure pour chaque projet et l'ajoute à la galerie
+                const figure = createFigure(work);
+                gallery.appendChild(figure);
+
+                // Crée une figure pour chaque projet et l'ajoute à la galerie de la modal
+                const modalFigure = createFigure(work, true);
+                modalFigure.classList.add("modal-figure");
+                modalGallery.appendChild(modalFigure);
+            }
+        });
+    }
+
+   // Fonction pour créer une figure pour un projet
+function createFigure(work, isModal = false) {
+    // Crée les éléments nécessaires (figure, img, figcaption)
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figcaption = document.createElement("figcaption");
+
+    // Défini les propriétés de l'image et du texte
+    img.src = work.imageUrl;
+    img.alt = work.title;
+    figcaption.textContent = work.title;
+
+    // Ajoute l'image et la légende à la figure
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+
+    if (isModal) {
+        // Ajoute un bouton de suppression pour chaque figure dans la modal
+        const deleteButton = document.createElement("button");
+        deleteButton.innerHTML = '<i class="fa fa-trash"></i>'; //icône de suppression
+        deleteButton.classList.add("delete-button");
+        deleteButton.addEventListener('click', () => {
+            console.log(`Projet ${work.title} supprimé avec succès.`);
+            //deleteProject(work, figureElement);
+        });
+        figure.appendChild(deleteButton);
+    }
+
+    // Retourne la figure créée
+    return figure;
+}
+
+// Fonction pour supprimer un projet
+async function deleteProject(work, figureElement) {
+    // Récupère le token d'authentification depuis le localStorage
+    const token = localStorage.getItem('token');
+    if (!token) {
+        // Si aucun token n'est trouvé, alerte l'utilisateur qu'il doit être connecté
+        alert('Vous devez être connecté pour supprimer un projet.');
+        return;
+    }
+
+    try {
+        // Appel API pour supprimer le projet
+        const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        // Vérifie si la réponse de l'API est correcte
+        if (response.ok) {
+            // Si la réponse est OK (200), supprime la figure du DOM
+            figureElement.remove();
+            console.log(`Projet ${work.title} supprimé avec succès.`);
+        } else {
+            // Si la réponse n'est pas OK, affiche un message d'erreur
+            if (response.status === 401) {
+                alert('Vous n\'êtes pas autorisé à supprimer ce projet. Assurez-vous que vous êtes connecté.');
+            } else {
+                console.error('Erreur lors de la suppression du projet:', response.statusText);
+                alert('Erreur lors de la suppression du projet.');
+            }
+        }
+    } catch (error) {
+        // En cas d'erreur avec l'appel API, affiche un message d'erreur
+        console.error('Erreur lors de la suppression du projet:', error);
+        alert('Erreur lors de la suppression du projet.');
+    }
+}
+
+    // Fonction asynchrone pour récupérer les catégories des projets de l'API
+    async function fetchCategories() {
+        try {
+            // Appel API pour récupérer les catégories
+            const response = await fetch("http://localhost:5678/api/categories");
+            // Conversion de la réponse en JSON
+            const categories = await response.json();
+            // Mise à jour des boutons de catégorie avec les catégories récupérées
+            updateCategoryButtons(categories);
+        } catch (error) {
+            // Affichage d'un message d'erreur en cas d'échec de l'appel API
+            console.error('Erreur lors de la récupération des catégories:', error);
+        }
+    }
+
+    // Fonction pour mettre à jour les boutons de filtre avec les catégories
+    function updateCategoryButtons(categories) {
+        // Efface le contenu actuel des boutons de filtre
+        btnFilter.innerHTML = '';
+
+        // Crée un ensemble de catégories unique avec une catégorie "Tous" par défaut
+        const categorySet = new Set([{ id: null, name: "Tous" }, ...categories]);
+        let selectedButton = null;
+
+        // Parcours chaque catégorie
+        categorySet.forEach(category => {
+            // Crée un bouton pour chaque catégorie
+            const buttonCtg = document.createElement("button");
+            buttonCtg.id = category.id;
+            buttonCtg.textContent = category.name;
+            buttonCtg.classList.add("filter-button");
+
+            // Ajoute le bouton de catégorie au conteneur de filtres
+            btnFilter.appendChild(buttonCtg);
+
+            // Ajoute un écouteur d'événements pour filtrer les projets par catégorie lorsque le bouton est cliqué
+            buttonCtg.addEventListener("click", () => {
+                console.log(`Projets de la catégorie : ${category.name}`);
+
+                // Réinitialise les styles du bouton sélectionné précédemment
+                if (selectedButton) {
+                    selectedButton.classList.remove('active');
+                }
+                // Met à jour le bouton sélectionné
+                selectedButton = buttonCtg;
+                selectedButton.classList.add('active');
+
+                // Récupère et affiche les projets de la catégorie sélectionnée
+                fetchWorks(category.id);
+            });
+        });
+    }
+
+    // Fonction pour configurer les écouteurs d'événements
+    function setupEventListeners() {
+        // Affiche la modal principale lors du clic sur le lien d'édition
+        editLink.addEventListener("click", showModal);
+        // Ferme la modal principale et affiche la deuxième modal lors du clic sur le bouton "addProject"
+        addProject.addEventListener("click", () => {
+            closeModal();
+            showModal2();
+        });
+        // Ferme la modal principale lors du clic sur le bouton de fermeture
+        closeBtn.addEventListener("click", closeModal);
+        // Ferme la deuxième modal lors du clic sur le bouton de fermeture
+        closeBtn2.addEventListener("click", closeModal2);
+        // Ferme la deuxième modal et affiche la modal principale lors du clic sur la flèche de retour
+        backArrow.addEventListener("click", () => {
+            closeModal2();
+            showModal();
+            console.log("retour modal");
+        });
+
+        // Ferme la modal principale lors du clic en dehors du contenu de la modal
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+                console.log("Fermer modal");
+            }
+        });
+
+        // Ferme la deuxième modal lors du clic en dehors du contenu de la modal
+        modal2.addEventListener('click', (event) => {
+            if (event.target === modal2) {
+                closeModal2();
+                console.log("Fermer modal");
+            }
+        });
+
+        // Ferme les modales lors de l'appui sur la touche Échap
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeModal();
+                closeModal2();
+                console.log("Fermer modal");
+            }
+        });
+    }
+
+    // Fonction pour afficher la première modal
+    function showModal() {
+        modal.style.display = 'block';
+        fetchWorks();
+        console.log("Afficher modal");
+    }
+
+    // Fonction pour fermer la première modal
+    function closeModal() {
+        modal.style.display = 'none';
+        console.log("Fermer modal");
+    }
+
+    // Fonction pour afficher la deuxième modal
+    function showModal2() {
+        modal2.style.display = 'block';
+        console.log("Afficher modal2");
+    }
+
+    // Fonction pour fermer la deuxième modal
+    function closeModal2() {
+        modal2.style.display = 'none';
+        console.log("Fermer modal2");
+    }
+
+    // Fonction pour mettre à jour les liens de connexion et d'édition
+    function updateLinks() {
+        // Vérifie si un token est présent dans le localStorage
+        if (localStorage.getItem('token')) {
+            // Change le texte du lien de connexion en "logout"
+            loginLink.textContent = 'logout';
+            // Ajoute un écouteur d'événements pour gérer la déconnexion
+            loginLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Supprime le token du localStorage
+                localStorage.removeItem('token');
+                // Redirige vers la page d'accueil
+                window.location.href = 'index.html';
+            });
+
+            // Affiche les éléments d'édition si l'utilisateur est connecté
+            editLink.style.display = 'visible';
+            editBar.style.display = 'visible';
+            // Masque les boutons de filtre
+            btnFilter.style.display = 'none';
+        } else {
+            // Change le texte du lien de connexion en "login"
+            loginLink.textContent = 'login';
+            // Masque les éléments d'édition si l'utilisateur n'est pas connecté
+            editLink.style.display = 'none';
+            editBar.style.display = 'none';
+        }
+    }
 });

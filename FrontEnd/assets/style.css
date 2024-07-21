@@ -169,35 +169,165 @@ li:hover {
 .modal {
 	display: none;
 	position: fixed;
-	z-index: 1000;
+	z-index: 1;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(0, 0, 0, 0.30);
 }
 
-.modal-content {
+.modal-content, .modal2-content {
 	background-color: #fefefe;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin: 15% auto;
-	padding: 20px;
 	border: 1px solid #888;
-	width: 80%;
+	max-width: 630px;
+	border-radius: 10px;
+	padding: 25px;
 }
 
 .closeBtn {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
+	width: 24px;
+	height: 24px;
+	font-size: 15px;
 	font-weight: bold;
+	background-color: #FFF;
+	border: none;
 }
 
 .closeBtn:hover,
 .closeBtn:focus {
-	color: black;
+	border: 1px solid #000;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+.modal-figure {
+	background-color: beige;
+}
+
+.modal-figure img {
+	width: 25%;
+}
+
+.modal-figure figcaption {
+	display: none;
+}
+
+.delete-button {
+	background-color: red;
+	/* Utilisez une couleur visible pour le test */
+	color: white;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.modal2-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 10px;
+}
+
+.backArrow img {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.closeBtn2 {
+	background: none;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+/* Style du titre du modal */
+.titleModal2 {
+	font-size: 1.5em;
+	margin: 20px;
+}
+
+/* Style du contenu pour ajouter une photo */
+.addPictureBackground {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #E8F1F6;
+	width: 420px;
+	height: 169px;
+	border-radius: 3px;
+	text-align: center;
+	margin: 20px;
+}
+
+.addPictureBackground img {
+	width: 100px;
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+.addPicture {
+	display: inline-block;
+	padding: 10px 20px;
+	background: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.addPictureTxt {
+	font-size: 0.9em;
+	color: #666;
+}
+
+/* Style du formulaire */
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+form label {
+	margin: 10px 0 5px;
+	font-weight: bold;
+}
+
+form input[type="text"] {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+
+.greyBar {
+	height: 1px;
+	width: 420px;
+	background: #B3B3B3;
+	margin-bottom: 32px;
+}
+
+#btnValidate {
+	padding: 10px;
+	background: #A7A7A7;
+	color: #fff;
+	width: 237px;
+    height: 36px;
+	border: none;
+	border-radius: 60px;
+	cursor: pointer;
+	font-family: 'Syne';
+	font-size: 14px;
+	font-weight: 700;
 }
 
 .btnFilter {
@@ -220,6 +350,12 @@ li:hover {
 	border: 1px solid #1D6154;
 	min-width: 100px;
 	height: 37px;
+	cursor: pointer;
+}
+
+.filter-button.active {
+	background-color: #1D6154;
+	color: #fff;
 }
 
 .gallery {
@@ -266,7 +402,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+#send {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;

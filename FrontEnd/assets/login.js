@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     messageDiv.textContent = 'Connexion réussie !';
                     messageDiv.style.color = 'green';
 
-                    // Redirection optionnelle après la connexion
+                    // Redirection après la connexion
                     window.location.href = 'index.html';
                 }
             } else if (response.status === 401) {

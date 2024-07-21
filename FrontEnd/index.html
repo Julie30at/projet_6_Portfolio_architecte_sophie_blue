@@ -48,14 +48,39 @@
 
 		<aside id="modal" class="modal" aria-modal="true" role="dialog">
 			<section class="modal-content">
+				<button class="closeBtn" aria-label="Fermer">X</button>
 				<h2 class="titleModal">Galerie photo</h2>
 				<div id="modal-gallery"></div>
-				<button class="closeBtn" aria-label="Fermer">X</button>
-				<div class="galleryModal">
-					<div class="deleteBtn"></div>
-				</div>
 				<div class="greyBar"></div>
 				<button class="addProject">Ajouter une photo</button>
+			</section>
+		</aside>
+
+		<aside id="modal2" class="modal" aria-modal="true" role="dialog">
+			<section class="modal2-content">
+				<div class="modal2-header">
+				<button class="backArrow">
+					<img src="./assets/icons/arrow-left.svg" alt="flèche de retour">
+				</button>
+				<button class="closeBtn2" aria-label="Fermer">X</button>
+				</div>
+				<h2 class="titleModal2">Ajout photo</h2>
+				<form id="addNewProject" action="#" method="post" enctype="multipart/form-data">
+					<div class="addPictureBackground">
+						<img id="previewImage" src="./assets/icons/picture-svgrepo-com 1.svg" alt="exemple de photo">
+						<label>
+							<span id="addPicture" class="addPicture">+ Ajouter photo</span>
+							<input type="file" id="newImage" name="newImage" accept="image/jpeg, image/png" hidden>
+						</label>
+						<p class="addPictureTxt">jpg, png : 4mo max</p>
+					</div>
+					<label for="titleProject">Titre</label>
+					<input type="text" name="titleProject" id="titleProject" required>
+					<label for="descriptionProject">Description</label>
+					<input type="text" name="descriptionProject" id="descriptionProject" required>
+					<div class="greyBar"></div>
+					<input id="btnValidate" type="submit" value="Valider">
+				</form>
 			</section>
 		</aside>
  
@@ -73,7 +98,7 @@
 			<input type="email" name="email" id="email">
 			<label for="message">Message</label>
 			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+			<input id="send" type="submit" value="Envoyer">
 		</form>
 	</section>
 </main>
