@@ -10,8 +10,8 @@
 	<meta name="description" content="Page d'accueil architecte d'intérieur sophie-bluel">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="https://kit.fontawesome.com/a4154d88af.js" crossorigin="anonymous"></script>
-	<script type="module" src="./assets/script.js" defer></script>
-	<script type="module" src="./assets/login.js" defer></script>
+	<script src="./assets/script.js" defer></script>
+	<script src="./assets/login.js" defer></script>
 
 </head>
 <body>
@@ -46,43 +46,44 @@
 			<a id="editLink" href="#modal"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
 		</h2>
 
-		<aside id="modal" class="modal" aria-modal="true" role="dialog">
+		<div id="modal" class="modal" aria-modal="true" role="dialog">
 			<section class="modal-content">
 				<button class="closeBtn" aria-label="Fermer">X</button>
 				<h2 class="titleModal">Galerie photo</h2>
 				<div id="modal-gallery"></div>
 				<div class="greyBar"></div>
-				<button class="addProject">Ajouter une photo</button>
+				<button class="addProject send">Ajouter une photo</button>
 			</section>
-		</aside>
+		</div>
 
-		<aside id="modal2" class="modal" aria-modal="true" role="dialog">
+		<div id="modal2" class="modal" aria-modal="true" role="dialog">
 			<section class="modal2-content">
 				<div class="modal2-header">
-				<button class="backArrow">
+				<button class="backArrow" aria-label="Retour">
 					<img src="./assets/icons/arrow-left.svg" alt="flèche de retour">
 				</button>
 				<button class="closeBtn2" aria-label="Fermer">X</button>
 				</div>
 				<h2 class="titleModal2">Ajout photo</h2>
-				<form id="addNewProject" action="#" method="post" enctype="multipart/form-data">
+				<form id="addNewProject" action="http://localhost:5678/api/users/works" method="post" enctype="multipart/form-data">
 					<div class="addPictureBackground">
-						<img id="previewImage" src="./assets/icons/picture-svgrepo-com 1.svg" alt="exemple de photo">
+						<img id="previewImage" src="./assets/icons/picture-svgrepo-com.svg" alt="exemple de photo">
 						<label>
 							<span id="addPicture" class="addPicture">+ Ajouter photo</span>
-							<input type="file" id="newImage" name="newImage" accept="image/jpeg, image/png" hidden>
+							<input type="file" id="image" name="image" accept="image/jpeg, image/png" hidden>
 						</label>
 						<p class="addPictureTxt">jpg, png : 4mo max</p>
 					</div>
-					<label for="titleProject">Titre</label>
-					<input type="text" name="titleProject" id="titleProject" required>
-					<label for="descriptionProject">Description</label>
-					<input type="text" name="descriptionProject" id="descriptionProject" required>
+					<label for="title">Titre</label>
+					<input type="text" name="title" id="title" required>
+					<label for="category">Catégorie</label>					
+					<input type="text" name="category" id="category" required>
 					<div class="greyBar"></div>
+					<div id="error-message" class="error-message hidden"></div>
 					<input id="btnValidate" type="submit" value="Valider">
-				</form>
-			</section>
-		</aside>
+				</form>		
+		    </section>
+		</div>
  
 		<div id="btnFilter" class="btnFilter"></div>
 		<div class="gallery">
@@ -98,7 +99,7 @@
 			<input type="email" name="email" id="email">
 			<label for="message">Message</label>
 			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input id="send" type="submit" value="Envoyer">
+			<input id="send" class="send" type="submit" value="Envoyer">
 		</form>
 	</section>
 </main>

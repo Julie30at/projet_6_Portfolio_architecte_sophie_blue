@@ -187,16 +187,19 @@ li:hover {
 	border: 1px solid #888;
 	max-width: 630px;
 	border-radius: 10px;
-	padding: 25px;
+	padding-top: 26px;
+	padding-bottom: 45px;
 }
 
 .closeBtn {
-	width: 24px;
+	width: 90%;
 	height: 24px;
 	font-size: 15px;
 	font-weight: bold;
 	background-color: #FFF;
 	border: none;
+	margin-bottom: 10px;
+	text-align: right;
 }
 
 .closeBtn:hover,
@@ -206,12 +209,22 @@ li:hover {
 	cursor: pointer;
 }
 
+#modal-gallery{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-right: 105px;
+	margin-left: 105px;
+}
+
 .modal-figure {
-	background-color: beige;
+	width: 79.635px;
+	height: 141.881px;
+	position: relative;
 }
 
 .modal-figure img {
-	width: 25%;
+	max-width: 100%;
 }
 
 .modal-figure figcaption {
@@ -219,14 +232,25 @@ li:hover {
 }
 
 .delete-button {
-	background-color: red;
-	/* Utilisez une couleur visible pour le test */
+	display: flex;
+    position: absolute;
+	z-index: 1;
+	top: 6px;
+	right: 4px;
+	justify-content: center;
+	background-color: black;
+	width: 17px;
+    height: 17px;
 	color: white;
 	border: none;
-	font-size: 16px;
+	font-size: 10px;
+	align-items: center;
 	cursor: pointer;
 	padding: 5px;
-	margin-top: 10px;
+}
+
+.addProject{
+	border: none;
 }
 
 .modal2-header {
@@ -330,6 +354,15 @@ form input[type="text"] {
 	font-weight: 700;
 }
 
+#error-message {
+ 	color: red;
+ 	font-size: 0.9em;
+}
+
+.error-message .hidden {
+	display: none;
+}
+
 .btnFilter {
 	display: flex;
 	gap: 10px;
@@ -402,7 +435,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#send {
+.send {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
