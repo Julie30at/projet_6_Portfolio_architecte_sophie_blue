@@ -48,8 +48,7 @@
 
 		<div id="modal" class="modal" aria-modal="true" role="dialog">
 			<section class="modal-content">
-				<button class="closeBtn" aria-label="Fermer">X</button>
-				<h2 class="titleModal">Galerie photo</h2>
+                <span class="closeBtn" aria-label="Fermer"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>				<h2 class="titleModal">Galerie photo</h2>
 				<div id="modal-gallery"></div>
 				<div class="greyBar"></div>
 				<button class="addProject send">Ajouter une photo</button>
@@ -62,7 +61,7 @@
 				<button class="backArrow" aria-label="Retour">
 					<img src="./assets/icons/arrow-left.svg" alt="flèche de retour">
 				</button>
-				<button class="closeBtn2" aria-label="Fermer">X</button>
+				<span class="closeBtn2" aria-label="Fermer"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>
 				</div>
 				<h2 class="titleModal2">Ajout photo</h2>
 				<form id="addNewProject" action="http://localhost:5678/api/users/works" method="post" enctype="multipart/form-data">
@@ -76,8 +75,9 @@
 					</div>
 					<label for="title">Titre</label>
 					<input type="text" name="title" id="title" required>
-					<label for="category">Catégorie</label>					
-					<input type="text" name="category" id="category" required>
+					<label for="category">Catégorie</label>	
+					<select name="category" id="category" required>
+					</select>
 					<div class="greyBar"></div>
 					<div id="error-message" class="error-message hidden"></div>
 					<input id="btnValidate" type="submit" value="Valider">

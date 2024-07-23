@@ -213,8 +213,7 @@ li:hover {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
-	margin-right: 105px;
-	margin-left: 105px;
+	width: 80%;
 }
 
 .modal-figure {

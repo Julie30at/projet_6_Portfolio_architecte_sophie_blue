@@ -1,6 +1,7 @@
 // Écouteur d'événements pour exécuter le code une fois que le DOM est complètement chargé
 document.addEventListener('DOMContentLoaded', function() {
     // Récupération des éléments dans le DOM
+    const url = "http://localhost:5678/api";
     const gallery = document.querySelector(".gallery"); // Sélection de l'élément avec la classe "gallery"
     const btnFilter = document.getElementById("btnFilter"); // Sélection de l'élément avec l'ID "btnFilter"
     const modal = document.querySelector('.modal'); // Sélection de l'élément avec la classe "modal"
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fonction asynchrone pour récupérer les projets de l'API
     async function fetchWorks(categoryId = null) {
         try {
-            const response = await fetch("http://localhost:5678/api/works"); // Requête pour obtenir les projets
+            const response = await fetch(`${url}/works`); // Requête pour obtenir les projets
             const projects = await response.json(); // Conversion de la réponse en JSON
             updateGallery(projects, categoryId); // Mise à jour de la galerie avec les projets
         } catch (error) {
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+            const response = await fetch(`${url}/works/${work.id}`,  {
                 method: 'DELETE', // Méthode HTTP DELETE
                 headers: {
                     'Authorization': `Bearer ${token}` // En-tête d'autorisation
@@ -130,9 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fonction asynchrone pour récupérer les catégories des projets de l'API
     async function fetchCategories() {
         try {
-            const response = await fetch("http://localhost:5678/api/categories"); // Requête pour obtenir les catégories
+            const response = await fetch(`${url}/categories`); // Requête pour obtenir les catégories
             const categories = await response.json(); // Conversion de la réponse en JSON
             updateCategoryButtons(categories); // Mise à jour des boutons de catégories
+            updateCategoryOptions(categories);
         } catch (error) {
             console.error('Erreur lors de la récupération des catégories:', error); // Affichage de l'erreur en cas d'échec
         }
@@ -164,6 +166,24 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+     // Fonction pour mettre à jour les options du menu déroulant
+    function updateCategoryOptions(categories) {
+        categoryInput.innerHTML = '';
+
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Sélectionner une catégorie";
+        categoryInput.appendChild(defaultOption);
+
+        categories.forEach(category => {
+            const option = document.createElement("option");
+            option.value = category.name;
+            option.textContent = category.name;
+            categoryInput.appendChild(option);
+        });
+    }
+
 
     // Fonction pour configurer les écouteurs d'événements
     function setupEventListeners() {
@@ -209,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 try {
-                    const response = await fetch("http://localhost:5678/api/works", {
+                    const response = await fetch(`${url}/works`, {
                         method: 'POST', // Méthode HTTP POST
                         headers: {
                             'Authorization': `Bearer ${token}`,
