@@ -1,65 +1,57 @@
-// Attend que le contenu du DOM soit complètement chargé avant d'exécuter le script
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // Sélectionne le formulaire de connexion par son ID
+    // Sélection de l'élément formulaire de connexion
     const loginForm = document.getElementById('loginForm');
-    
-    // Crée un élément <div> pour afficher les messages de succès ou d'erreur
-    const messageDiv = document.createElement('div');
-    
-    // Ajoute le messageDiv à la fin du formulaire de connexion
-    loginForm.appendChild(messageDiv);
 
-    // Ajoute un écouteur d'événement pour la soumission du formulaire
-    loginForm.addEventListener('submit', async function(event) {
-        // Empêche l'action par défaut du formulaire (rechargement de la page)
-        event.preventDefault();
+    // Vérifier si le formulaire de connexion est présent dans le DOM
+    if (loginForm) {
+        // Création d'un élément <div> pour afficher les messages de statut (succès ou erreur)
+        const messageDiv = document.createElement('div');
+        loginForm.appendChild(messageDiv); // Ajouter l'élément <div> au formulaire
 
-        // Récupère les valeurs des champs email et password
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        // Ajouter un écouteur d'événement pour la soumission du formulaire
+        loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Empêcher la soumission par défaut du formulaire
 
-        try {
-            // Envoie une requête POST à l'API de connexion
-            const response = await fetch('http://localhost:5678/api/users/login', {
-                method: 'POST', // méthode de requête
-                headers: {
-                    'Content-Type': 'application/json', // Définit le type de contenu comme JSON
-                },
-                body: JSON.stringify({ email, password }), // Convertit les données de connexion en JSON
-            });
+            // Récupérer les valeurs des champs email et mot de passe
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-            // Vérifie si la réponse est correcte (statut 200-299)
-            if (response.ok) { // Utilisation de response.ok pour vérifier les statuts 200-299
-                // Convertit la réponse en JSON si le statut est OK
-                const data = await response.json();
-                
-                // Vérifie si la réponse contient un token
-                if (data.token) {
-                    // Stocke le token dans le local storage
-                    localStorage.setItem('token', data.token);
-                    
-                    // Affiche un message de succès et change la couleur du texte en vert
-                    messageDiv.textContent = 'Connexion réussie !';
-                    messageDiv.style.color = 'green';
+            try {
+                // Envoyer une requête POST à l'API pour tenter de se connecter
+                const response = await fetch('http://localhost:5678/api/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Indiquer que les données sont en JSON
+                    },
+                    body: JSON.stringify({ email, password }), // Envoyer les données du formulaire sous forme de JSON
+                });
 
-                    // Redirection après la connexion
-                    window.location.href = 'index.html';
+                // Vérifier la réponse de l'API
+                if (response.ok) {
+                    // Si la réponse est OK, extraire les données JSON
+                    const data = await response.json();
+                    if (data.token) {
+                        // Si un token est reçu, le stocker dans le stockage local
+                        localStorage.setItem('token', data.token);
+                        messageDiv.textContent = 'Connexion réussie !'; // Afficher un message de succès
+                        messageDiv.style.color = 'green'; // Changer la couleur du texte en vert
+                        window.location.href = 'index.html'; // Rediriger l'utilisateur vers la page d'accueil
+                    }
+                } else if (response.status === 401) {
+                    // Si le statut est 401, l'email ou le mot de passe est incorrect
+                    throw new Error('Email ou mot de passe incorrect.');
+                } else if (response.status === 404) {
+                    // Si le statut est 404, l'utilisateur n'a pas été trouvé
+                    throw new Error('Utilisateur non trouvé.');
+                } else {
+                    // Autres erreurs HTTP
+                    throw new Error('Erreur : ' + response.statusText);
                 }
-            } else if (response.status === 401) {
-                // Si la réponse a un statut 401, lève une erreur d'authentification
-                throw new Error('Email ou mot de passe incorrect.');
-            } else if (response.status === 404) {
-                // Si la réponse a un statut 404, lève une erreur utilisateur non trouvé
-                throw new Error('Utilisateur non trouvé.');
-            } else {
-                // Pour d'autres statuts d'erreur, lève une erreur inconnue
-                throw new Error('Erreur : ' + response.statusText);
+            } catch (error) {
+                // En cas d'erreur, afficher un message d'erreur
+                messageDiv.textContent = 'Erreur : ' + error.message;
+                messageDiv.style.color = 'red'; // Changer la couleur du texte en rouge
             }
-        } catch (error) {
-            // En cas d'erreur, affiche le message d'erreur et change la couleur du texte en rouge
-            messageDiv.textContent = 'Erreur : ' + error.message;
-            messageDiv.style.color = 'red';
-        }
-    });
+        });
+    }
 });
