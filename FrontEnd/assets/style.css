@@ -116,9 +116,15 @@ nav li {
 	font-size: 1.2em;
 }
 
+nav li img {
+	width: 22px;
+	height: 22px;
+}
+
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -143,8 +149,10 @@ li:hover {
 	margin-bottom: 0.5em;
 }
 #portfolio h2 {
-	text-align: center;
-	margin-bottom: 2em;
+	display: flex;
+	margin-bottom: 95px;
+	justify-content: center;
+	align-items: center;
 }
 
 #editLink {
@@ -166,40 +174,38 @@ li:hover {
 	margin-right: 10px;
 }
 
-.modal {
-	display: none;
+.modals {
 	position: fixed;
+	margin: 0;
 	z-index: 1;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
-	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.30);
 }
 
-.modal-content, .modal2-content {
+.modalContent1, .modalContent2 {
+	position: relative;
 	background-color: #fefefe;
-	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 15% auto;
+	margin: 10% auto;
 	border: 1px solid #888;
-	max-width: 630px;
+	width: 630px;
+	max-width: 40%;
+	height: 688px;
+	max-height: 80vh;
 	border-radius: 10px;
-	padding-top: 26px;
-	padding-bottom: 45px;
+	overflow-y: auto;
+	box-sizing: border-box;
 }
 
 .closeBtn {
-	width: 90%;
-	height: 24px;
-	font-size: 15px;
-	font-weight: bold;
-	background-color: #FFF;
-	border: none;
+	position: absolute;
+	top: 26px;
+	right: 30px;
 	margin-bottom: 10px;
-	text-align: right;
 }
 
 .closeBtn:hover,
@@ -209,7 +215,16 @@ li:hover {
 	cursor: pointer;
 }
 
-#modal-gallery{
+.titleModal{
+	color: #000;
+	font-family: "Work Sans";
+	font-size: 26px;
+	font-weight: 400;
+	margin-top: 60px;
+	margin-bottom: 41px;
+}
+
+#modalGallery{
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
@@ -248,11 +263,26 @@ li:hover {
 	padding: 5px;
 }
 
-.addProject{
-	border: none;
+.greyBar1{
+	height: 1px;
+	width: 80%;
+	background: #B3B3B3;
+	margin-bottom: 32px;
 }
 
-.modal2-header {
+.addProject{
+	width: 45%;
+	height: 36px;
+	border: none;
+	border-radius: 60px;
+	cursor: pointer;
+	font-family: 'Syne';
+	font-size: 14px;
+	color: white;
+	background-color: #1d6154;
+}
+
+.modalHeader2 {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -260,97 +290,119 @@ li:hover {
 }
 
 .backArrow img {
-	width: 24px;
-	height: 24px;
 	cursor: pointer;
+	position: absolute;
+	top: 26px;
+	left: 30px;
+	margin-bottom: 10px;
 }
 
 .closeBtn2 {
-	background: none;
-	border: none;
-	font-size: 24px;
+	position: absolute;
+	top: 26px;
+	right: 30px;
+	margin-bottom: 10px;
+}
+
+.closeBtn2:hover,
+.closeBtn2:focus {
+	border: 1px solid #000;
+	text-decoration: none;
 	cursor: pointer;
 }
 
 /* Style du titre du modal */
 .titleModal2 {
-	font-size: 1.5em;
-	margin: 20px;
+	color: #000;
+	font-family: "Work Sans";
+	font-size: 26px;
+	font-weight: 400;
+	margin-top: 55px;
+	margin-bottom: 36px;
 }
 
 /* Style du contenu pour ajouter une photo */
+
 .addPictureBackground {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	background-color: #E8F1F6;
-	width: 420px;
-	height: 169px;
+	height: 170px;
 	border-radius: 3px;
 	text-align: center;
-	margin: 20px;
+	gap: 10px;
 }
 
 .addPictureBackground img {
-	width: 100px;
-	height: 100px;
+	margin-top: 13px;
 	margin-bottom: 10px;
 }
 
 .addPicture {
-	display: inline-block;
 	padding: 10px 20px;
-	background: #007bff;
-	color: #fff;
+	background: #CBD6DC;
+	color: #306685;
 	border: none;
-	border-radius: 5px;
+	border-radius: 50px;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .addPictureTxt {
-	font-size: 0.9em;
+	font-size: 10px;
+	margin-top: 7px;
+	margin-bottom: 19px;
 	color: #666;
 }
 
 /* Style du formulaire */
-form {
+#addNewProject {
 	display: flex;
 	flex-direction: column;
+	width: 65%;
 }
 
-form label {
-	margin: 10px 0 5px;
-	font-weight: bold;
+.addNewProjectLabel {
+     margin-top: 30px;
+	 margin-bottom: 10px;
 }
 
-form input[type="text"] {
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	font-size: 16px;
-	margin-bottom: 15px;
+#addNewProject input[type="text"] {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-.greyBar {
+#category {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	margin-bottom: 47px;
+}
+
+.greyBar2 {
 	height: 1px;
-	width: 420px;
+	width: 100%;
 	background: #B3B3B3;
 	margin-bottom: 32px;
 }
 
 #btnValidate {
-	padding: 10px;
 	background: #A7A7A7;
 	color: #fff;
-	width: 237px;
+	width: 45%;
     height: 36px;
 	border: none;
 	border-radius: 60px;
 	cursor: pointer;
 	font-family: 'Syne';
 	font-size: 14px;
-	font-weight: 700;
+	position: absolute;
+	bottom: 7%;
+	left: 27%;
 }
 
 #error-message {
@@ -398,9 +450,12 @@ form input[type="text"] {
 	grid-row-gap: 20px;
 }
 
+.gallery figcaption {
+	margin-top: 10px;
+}
+
 .gallery img {
 	width: 100%;
-
 }
 #contact {
 	width: 50%;
@@ -435,14 +490,14 @@ margin: auto;
 }
 
 .send {
-	font-family: 'Syne';
+	font-family: "Syne";
 	font-weight: 700;
 	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
+	background-color: #1d6154;
+	margin: 2em auto;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 }
 
 footer nav ul {

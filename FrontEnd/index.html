@@ -46,24 +46,23 @@
 			<a id="editLink" href="#modal"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
 		</h2>
 
-		<div id="modal" class="modal" aria-modal="true" role="dialog">
-			<section class="modal-content">
-                <span class="closeBtn" aria-label="Fermer"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>				<h2 class="titleModal">Galerie photo</h2>
-				<div id="modal-gallery"></div>
-				<div class="greyBar"></div>
-				<button class="addProject send">Ajouter une photo</button>
-			</section>
-		</div>
+		<section id="modals" class="modals" aria-modal="true" role="dialog">
+			<div class="modalContent1">
+                <span class="closeBtn" aria-label="Fermer"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>				
+				<h3 class="titleModal">Galerie photo</h3>
+				<div id="modalGallery"></div>
+				<div class="greyBar1"></div>
+				<button class="addProject">Ajouter une photo</button>
+			</div>
 
-		<div id="modal2" class="modal" aria-modal="true" role="dialog">
-			<section class="modal2-content">
-				<div class="modal2-header">
-				<button class="backArrow" aria-label="Retour">
+			<div class="modalContent2">
+				<div class="modalHeader2">
+				<div class="backArrow" aria-label="Retour">
 					<img src="./assets/icons/arrow-left.svg" alt="flèche de retour">
-				</button>
+				</div>
 				<span class="closeBtn2" aria-label="Fermer"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>
 				</div>
-				<h2 class="titleModal2">Ajout photo</h2>
+				<h3 class="titleModal2">Ajout photo</h3>
 				<form id="addNewProject" action="http://localhost:5678/api/users/works" method="post" enctype="multipart/form-data">
 					<div class="addPictureBackground">
 						<img id="previewImage" src="./assets/icons/picture-svgrepo-com.svg" alt="exemple de photo">
@@ -73,17 +72,17 @@
 						</label>
 						<p class="addPictureTxt">jpg, png : 4mo max</p>
 					</div>
-					<label for="title">Titre</label>
+					<label class="addNewProjectLabel" for="title">Titre</label>
 					<input type="text" name="title" id="title" required>
-					<label for="category">Catégorie</label>	
+					<label class="addNewProjectLabel" for="category">Catégorie</label>	
 					<select name="category" id="category" required>
 					</select>
-					<div class="greyBar"></div>
+					<div class="greyBar2"></div>
 					<div id="error-message" class="error-message hidden"></div>
 					<input id="btnValidate" type="submit" value="Valider">
 				</form>		
-		    </section>
-		</div>
+			</div>
+		</section>
  
 		<div id="btnFilter" class="btnFilter"></div>
 		<div class="gallery">
