@@ -74,12 +74,11 @@ section {
 	align-items: center;
 	background-color: #000;
 	color: #FFF;
-	text-align: center;
-	font-family: "Work Sans";
 	font-size: 16px;
+	cursor: default;
 }
 
-#editionMode i {
+.editionModeI {
 	margin: 10px;
 }
 
@@ -89,7 +88,8 @@ h1{
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: #B1663C;
+	cursor: default;
 }
 
 h1 > span {
@@ -107,18 +107,12 @@ h2{
 }
 nav ul {
 	display: flex;
-	align-items: center;
-	list-style-type: none;
-
+	gap: 44px;
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
-}
-
-nav li img {
-	width: 22px;
-	height: 22px;
 }
 
 li:hover {
@@ -143,16 +137,19 @@ li:hover {
 }
 #introduction h2 {
 	margin-bottom: 1em;
+	cursor: default;
 }
 
 #introduction p {
 	margin-bottom: 0.5em;
+	cursor: default;
 }
 #portfolio h2 {
 	display: flex;
 	margin-bottom: 95px;
 	justify-content: center;
 	align-items: center;
+	cursor: default;
 }
 
 #editLink {
@@ -167,6 +164,7 @@ li:hover {
 
 #editLink:hover {
 	font-weight: bold;
+	color: #B1663C;
 }
 
 #editLink i {
@@ -206,13 +204,15 @@ li:hover {
 	top: 26px;
 	right: 30px;
 	margin-bottom: 10px;
+	font-size: 16px;
+	transition: transform 0.3s ease-in-out;
 }
 
 .closeBtn:hover,
 .closeBtn:focus {
-	border: 1px solid #000;
 	text-decoration: none;
 	cursor: pointer;
+	transform: scale(1.2);
 }
 
 .titleModal{
@@ -222,6 +222,7 @@ li:hover {
 	font-weight: 400;
 	margin-top: 60px;
 	margin-bottom: 41px;
+	cursor: default;
 }
 
 #modalGallery{
@@ -261,6 +262,11 @@ li:hover {
 	align-items: center;
 	cursor: pointer;
 	padding: 5px;
+	transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+	transform: scale(1.2);
 }
 
 .greyBar1{
@@ -280,6 +286,11 @@ li:hover {
 	font-size: 14px;
 	color: white;
 	background-color: #1d6154;
+	transition: all 0.5s ease;
+}
+
+.addProject:hover{
+	transform: scale(1.1);
 }
 
 .modalHeader2 {
@@ -311,7 +322,6 @@ li:hover {
 	cursor: pointer;
 }
 
-/* Style du titre du modal */
 .titleModal2 {
 	color: #000;
 	font-family: "Work Sans";
@@ -319,9 +329,8 @@ li:hover {
 	font-weight: 400;
 	margin-top: 55px;
 	margin-bottom: 36px;
+	cursor: default;
 }
-
-/* Style du contenu pour ajouter une photo */
 
 .addPictureBackground {
 	display: flex;
@@ -339,24 +348,30 @@ li:hover {
 	margin-bottom: 10px;
 }
 
-.addPicture {
-	padding: 10px 20px;
-	background: #CBD6DC;
-	color: #306685;
-	border: none;
-	border-radius: 50px;
-	cursor: pointer;
-	font-size: 14px;
-}
+ .addPicture {
+ 	padding: 10px 20px;
+ 	background: #CBD6DC;
+ 	color: #306685;
+ 	border: none;
+ 	border-radius: 50px;
+ 	cursor: pointer;
+ 	font-size: 14px;
+ 	transition: all 0.5s;
+ }
+
+ .addPicture:hover {
+ 	background-color: #306685;
+ 	color: #CBD6DC;
+ }
 
 .addPictureTxt {
 	font-size: 10px;
 	margin-top: 7px;
 	margin-bottom: 19px;
 	color: #666;
+	cursor: default;
 }
 
-/* Style du formulaire */
 #addNewProject {
 	display: flex;
 	flex-direction: column;
@@ -403,6 +418,12 @@ li:hover {
 	position: absolute;
 	bottom: 7%;
 	left: 27%;
+	transition: all 0.3s ease;
+}
+
+#btnValidate:hover {
+	background: #8e8e8e;
+	transform: scale(1.1);
 }
 
 #error-message {
@@ -452,6 +473,7 @@ li:hover {
 
 .gallery figcaption {
 	margin-top: 10px;
+	cursor: default;
 }
 
 .gallery img {
@@ -467,7 +489,13 @@ margin: auto;
 }
 #contact h2{
 	margin-bottom: 20px;
+	cursor: default;
 }
+
+#contact p {
+	cursor: default;
+}
+
 #contact form {
 	text-align: left;
 	margin-top:30px;
@@ -498,6 +526,14 @@ margin: auto;
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.send:hover,
+.send:active {
+	background-color: #145743;
+	transform: scale(1.05);
 }
 
 footer nav ul {
@@ -506,10 +542,15 @@ footer nav ul {
 	margin: 2em
 }
 
+#boldLogin {
+	font-weight: bold;
+}
+
 .login {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	cursor: default;
 }
 
 .form_connection{
