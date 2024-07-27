@@ -47,7 +47,7 @@
 
 		<section id="modals" class="modals" aria-modal="true" role="dialog">
 			<div class="modalContent1">
-                <span class="closeBtn" aria-label="Fermer"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>				
+                <span class="closeBtn"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>				
 				<h3 class="titleModal">Galerie photo</h3>
 				<div id="modalGallery"></div>
 				<div class="greyBar1"></div>
@@ -56,10 +56,10 @@
 
 			<div class="modalContent2">
 				<div class="modalHeader2">
-				<div class="backArrow" aria-label="Retour">
+				<div class="backArrow">
 					<img src="./assets/icons/arrow-left.svg" alt="flèche de retour">
 				</div>
-				<span class="closeBtn2" aria-label="Fermer"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>
+				<span class="closeBtn2"><img src="./assets/icons/Vector.svg" alt="bouton fermer"></span>
 				</div>
 				<h3 class="titleModal2">Ajout photo</h3>
 				<form id="addNewProject" action="http://localhost:5678/api/users/works" method="post" enctype="multipart/form-data">
@@ -74,7 +74,7 @@
 					<label class="addNewProjectLabel" for="title">Titre</label>
 					<input type="text" name="title" id="title" required>
 					<label class="addNewProjectLabel" for="category">Catégorie</label>	
-					<select name="category" id="category" required>
+					<select name="category" id="category">
 					</select>
 					<div class="greyBar2"></div>
 					<div id="error-message" class="error-message hidden"></div>
