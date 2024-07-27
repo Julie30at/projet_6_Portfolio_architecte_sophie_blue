@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Sophie Bluel - Architecte d'intérieur - login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-        rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a4154d88af.js" crossorigin="anonymous"></script>
-    <meta name="description" content="Page de connexion pour accéder aux services de Sophie Bluel, Architecte d'intérieur">
-    <link rel="stylesheet" href="./assets/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a4154d88af.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta
+      name="description"
+      content="Page de connexion pour accéder aux services de Sophie Bluel, Architecte d'intérieur"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
     <script src="./assets/login.js" defer></script>
-</head>
-<body>
-<header>
-    <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-    <nav>
+  </head>
+  <body>
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <nav>
         <ul>
-            <li><a href="/FrontEnd/index.html">projets</a></li>
-            <li><a href="/FrontEnd/index.html">contact</a></li>
-            <li><a href="#login" id="boldLogin">login</a></li>
-            <li><a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="/FrontEnd/index.html">projets</a></li>
+          <li><a href="/FrontEnd/index.html">contact</a></li>
+          <li><a href="#login" id="boldLogin">login</a></li>
+          <li>
+            <a href="https://www.instagram.com/" target="_blank"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </li>
         </ul>
-    </nav>
-</header>
-<main>
-    <section id="login" class="login">
+      </nav>
+    </header>
+    <main>
+      <section id="login" class="login">
         <h2>Log In</h2>
-        <form id="loginForm" class="form_connection" action="http://localhost:5678/api/users/login" method="post">
-            <label for="email">E-mail</label>
-            <input type="email" name="email" id="email" required>
-            <label for="password">Mot de Passe</label>
-            <input type="password" name="password" id="password" required>
-            <input type="submit" value="Se connecter" class="login_ok send">
-            <a href="#">Mot de passe oublié</a>
+        <form
+          id="loginForm"
+          class="form_connection"
+          action="http://localhost:5678/api/users/login"
+          method="post"
+        >
+          <label for="email">E-mail</label>
+          <input type="email" name="email" id="email" required />
+          <label for="password">Mot de Passe</label>
+          <input type="password" name="password" id="password" required />
+          <input type="submit" value="Se connecter" class="login_ok send" />
+          <a href="#">Mot de passe oublié</a>
         </form>
-    </section>
-</main>
-<footer>
-    <nav>
+      </section>
+    </main>
+    <footer>
+      <nav>
         <ul>
-            <li><a href="#">Mentions Légales</a></li>
+          <li><a href="#">Mentions Légales</a></li>
         </ul>
-    </nav>
-</footer>
-</body>
+      </nav>
+    </footer>
+  </body>
 </html>

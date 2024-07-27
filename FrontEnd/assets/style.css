@@ -1,633 +1,816 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/* CSS Reset: Normalise les styles par défaut des éléments HTML pour éviter les incohérences entre les navigateurs */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-a {
-	color: inherit;
-	text-decoration: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/** end reset css**/
-body {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	max-width: 1440px;
-	margin:auto;
-	font-family: 'Work Sans' ;
-	font-size: 14px;
-	background-color: #FFFEF8;
-}
-header {
-	width: 1140px;
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
-}
+/* Réinitialisation pour les éléments HTML5 dans les navigateurs plus anciens */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
 section {
-	margin: 50px 0
+  display: block;
 }
+
+body {
+  line-height: 1;
+  /* Définit l'interligne de base */
+}
+
+/* Supprime les puces des listes */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Supprime la décoration par défaut des liens */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Supprime les guillemets par défaut pour les citations */
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+/* Réinitialisation des bordures des tableaux */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/** Fin de la réinitialisation CSS **/
+
+/* Style général pour le body */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1440px;
+  margin: auto;
+  font-family: "Work Sans";
+  font-size: 14px;
+  background-color: #fffef8;
+  /* Couleur de fond générale */
+}
+
+/* Style pour l'en-tête */
+header {
+  width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+  /* Marge supérieure et inférieure */
+}
+
+/* Style pour les sections principales */
+section {
+  margin: 50px 0;
+  /* Marge supérieure et inférieure */
+}
+
+/* Style pour le main */
 main {
-	width: 1140px;
+  width: 1140px;
 }
 
+/* Style pour le pied de page */
 footer {
-	width: 1140px;
+  width: 1140px;
 }
 
+/* Style pour le mode édition */
 #editionMode {
-	width: 100%;
-	justify-content: center;
-	align-items: center;
-	background-color: #000;
-	color: #FFF;
-	font-size: 16px;
-	cursor: default;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  /* Couleur de fond noire */
+  color: #fff;
+  /* Couleur du texte blanche */
+  font-size: 16px;
+  cursor: default;
 }
 
+/* Style pour le texte de mode édition */
 .editionModeI {
-	display: flex;
-	margin: 10px;
-	gap: 10px;
+  display: flex;
+  margin: 10px;
+  gap: 10px;
 }
 
-h1{
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C;
-	cursor: default;
+/* Style pour le titre principal (h1) */
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
+  /* Couleur du texte */
+  cursor: default;
 }
 
+/* Style pour le sous-titre dans h1 */
 h1 > span {
-	font-family: 'Work Sans';
-	font-size:10px;
-	letter-spacing: 0.1em;
-;
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
 }
 
-h2{
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154
+/* Style pour les titres de niveau 2 (h2) */
+h2 {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: #1d6154;
+  /* Couleur du texte */
 }
+
+/* Style pour les éléments de la navigation */
 nav ul {
-	display: flex;
-	gap: 44px;
+  display: flex;
+  gap: 44px;
+  /* Espacement entre les éléments */
 }
 
 nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+  padding: 0 10px;
+  font-size: 1.2em;
 }
 
+/* Effet au survol des éléments de la liste dans la navigation */
 li:hover {
-	color: #B1663C;
+  color: #b1663c;
 }
 
+/* Style pour la section d'introduction */
 #introduction {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
+
 #introduction figure {
-	flex: 1
+  flex: 1;
+  /* Permet à l'image de prendre tout l'espace disponible */
 }
+
 #introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
+  display: block;
+  margin: auto;
+  width: 80%;
+  /* Largeur de l'image */
 }
 
 #introduction article {
-	flex: 1
+  flex: 1;
 }
+
 #introduction h2 {
-	margin-bottom: 1em;
-	cursor: default;
+  margin-bottom: 1em;
+  cursor: default;
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
-	cursor: default;
-}
-#portfolio h2 {
-	display: flex;
-	margin-bottom: 95px;
-	justify-content: center;
-	align-items: center;
-	cursor: default;
+  margin-bottom: 0.5em;
+  cursor: default;
 }
 
+/* Style pour le titre de la section Portfolio */
+#portfolio h2 {
+  display: flex;
+  margin-bottom: 95px;
+  /* Marge inférieure */
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+
+/* Style pour le lien de modification dans Portfolio */
 #editLink {
-	color: #000;
-	text-align: center;
-	font-family: "Work Sans";
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
+  color: #000;
+  text-align: center;
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 #editLink:hover {
-	font-weight: bold;
-	color: #B1663C;
+  font-weight: bold;
+  color: #b1663c;
 }
 
 #editLink i {
-	margin-left: 30px;
-	margin-right: 10px;
+  margin-left: 30px;
+  margin-right: 10px;
 }
 
+/* Style pour les modals */
 .modals {
-	position: fixed;
-	margin: 0;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.30);
+  position: fixed;
+  margin: 0;
+  z-index: 1;
+  /* Assure que le modal est au-dessus des autres éléments */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  /* Fond semi-transparent */
 }
 
-.modalContent1, .modalContent2 {
-	position: relative;
-	background-color: #fefefe;
-	flex-direction: column;
-	align-items: center;
-	margin: 10% auto;
-	border: 1px solid #888;
-	width: 630px;
-	max-width: 40%;
-	height: 688px;
-	max-height: 80vh;
-	border-radius: 10px;
-	overflow-y: auto;
-	box-sizing: border-box;
+/* Style général pour les contenus des modals */
+.modalContent1,
+.modalContent2 {
+  position: relative;
+  background-color: #fefefe;
+  /* Couleur de fond des modals */
+  flex-direction: column;
+  align-items: center;
+  margin: 10% auto;
+  border: 1px solid #888;
+  width: 630px;
+  max-width: 40%;
+  height: 688px;
+  max-height: 80vh;
+  border-radius: 10px;
+  overflow-y: auto;
+  /* Ajoute une barre de défilement si nécessaire */
+  box-sizing: border-box;
 }
 
+/* Style pour le bouton de fermeture des modals */
 .closeBtn {
-	position: absolute;
-	top: 26px;
-	right: 30px;
-	margin-bottom: 10px;
-	font-size: 16px;
-	transition: transform 0.3s ease-in-out;
+  position: absolute;
+  top: 26px;
+  right: 30px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .closeBtn:hover,
 .closeBtn:focus {
-	text-decoration: none;
-	cursor: pointer;
-	transform: scale(1.2);
+  text-decoration: none;
+  cursor: pointer;
+  transform: scale(1.2);
+  /* Agrandit le bouton au survol */
 }
 
-.titleModal{
-	color: #000;
-	font-family: "Work Sans";
-	font-size: 26px;
-	font-weight: 400;
-	margin-top: 60px;
-	margin-bottom: 41px;
-	cursor: default;
+/* Style pour le titre des modals */
+.titleModal {
+  color: #000;
+  font-family: "Work Sans";
+  font-size: 26px;
+  font-weight: 400;
+  margin-top: 60px;
+  margin-bottom: 41px;
+  cursor: default;
 }
 
-#modalGallery{
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	width: 80%;
+/* Style pour la galerie dans le modal */
+#modalGallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 80%;
 }
 
 .modal-figure {
-	width: 80px;
-	height: 107px;
-	position: relative;
-	margin-bottom: 17px;
+  width: 80px;
+  height: 107px;
+  position: relative;
+  margin-bottom: 17px;
 }
 
 .modal-figure img {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 .modal-figure figcaption {
-	display: none;
+  display: none;
+  /* Cache les légendes des images dans la galerie */
 }
 
+/* Style pour le bouton de suppression dans la galerie */
 .delete-button {
-	display: flex;
-    position: absolute;
-	z-index: 1;
-	top: 6px;
-	right: 4px;
-	justify-content: center;
-	background-color: black;
-	width: 17px;
-    height: 17px;
-	color: white;
-	border: none;
-	font-size: 10px;
-	align-items: center;
-	cursor: pointer;
-	padding: 5px;
-	transition: all 0.3s ease;
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  top: 6px;
+  right: 4px;
+  justify-content: center;
+  background-color: black;
+  width: 17px;
+  height: 17px;
+  color: white;
+  border: none;
+  font-size: 10px;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.3s ease;
 }
 
 .delete-button:hover {
-	transform: scale(1.2);
+  transform: scale(1.2);
+  /* Agrandit le bouton au survol */
 }
 
-.greyBar1{
-	width: 80%;
-	padding: 0.5px;
-	background: #B3B3B3;
-	margin-top: 40px;
-	margin-bottom: 32px;
+/* Style pour la barre grise dans les modals */
+.greyBar1 {
+  width: 80%;
+  padding: 0.5px;
+  background: #b3b3b3;
+  margin-top: 40px;
+  margin-bottom: 32px;
 }
 
-.addProject{
-	width: 45%;
-	height: 36px;
-	border: none;
-	border-radius: 60px;
-	cursor: pointer;
-	font-family: 'Syne';
-	font-size: 14px;
-	color: white;
-	background-color: #1d6154;
-	transition: all 0.5s ease;
-	margin-bottom: 45px;
+/* Style pour le bouton d'ajout de projet */
+.addProject {
+  width: 45%;
+  height: 36px;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  font-family: "Syne";
+  font-size: 14px;
+  color: white;
+  background-color: #1d6154;
+  transition: all 0.5s ease;
+  margin-bottom: 45px;
 }
 
-.addProject:hover{
-	transform: scale(1.1);
+.addProject:hover {
+  transform: scale(1.1);
+  /* Agrandit le bouton au survol */
 }
 
+/* Style pour l'en-tête de la deuxième modal */
 .modalHeader2 {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
 }
 
+/* Style pour la flèche de retour dans la modal */
 .backArrow img {
-	cursor: pointer;
-	position: absolute;
-	top: 26px;
-	left: 30px;
-	margin-bottom: 10px;
-	transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  position: absolute;
+  top: 26px;
+  left: 30px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .backArrow img:hover,
 .backArrow img:focus {
-	transform: scale(1.2);
+  transform: scale(1.2);
+  /* Agrandit l'image au survol */
 }
 
+/* Style pour le bouton de fermeture de la deuxième modal */
 .closeBtn2 {
-	position: absolute;
-	top: 26px;
-	right: 30px;
-	margin-bottom: 10px;
-	transition: transform 0.3s ease-in-out;
+  position: absolute;
+  top: 26px;
+  right: 30px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .closeBtn2:hover,
 .closeBtn2:focus {
-	text-decoration: none;
-	cursor: pointer;
-	transform: scale(1.2);
+  text-decoration: none;
+  cursor: pointer;
+  transform: scale(1.2);
+  /* Agrandit le bouton au survol */
 }
 
+/* Style pour le titre de la deuxième modal */
 .titleModal2 {
-	color: #000;
-	font-family: "Work Sans";
-	font-size: 26px;
-	font-weight: 400;
-	margin-top: 55px;
-	margin-bottom: 36px;
-	cursor: default;
+  color: #000;
+  font-family: "Work Sans";
+  font-size: 26px;
+  font-weight: 400;
+  margin-top: 55px;
+  margin-bottom: 36px;
+  cursor: default;
 }
 
+/* Style pour l'arrière-plan d'ajout d'image */
 .addPictureBackground {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: #E8F1F6;
-	height: 170px;
-	border-radius: 3px;
-	text-align: center;
-	gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e8f1f6;
+  /* Couleur de fond */
+  height: 170px;
+  border-radius: 3px;
+  text-align: center;
+  gap: 10px;
 }
 
 .addPictureBackground img {
-	margin-top: 13px;
-	margin-bottom: 10px;
+  margin-top: 13px;
+  margin-bottom: 10px;
 }
 
- .addPicture {
- 	padding: 10px 20px;
- 	background: #CBD6DC;
- 	color: #306685;
- 	border: none;
- 	border-radius: 50px;
- 	cursor: pointer;
- 	font-size: 14px;
- 	transition: all 0.5s;
-	min-width: 60%;
- }
+/* Style pour le bouton d'ajout d'image */
+.addPicture {
+  padding: 10px 20px;
+  background: #cbd6dc;
+  color: #306685;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.5s;
+  min-width: 60%;
+}
 
- .addPicture:hover {
- 	background-color: #306685;
- 	color: #CBD6DC;
- }
+.addPicture:hover {
+  background-color: #306685;
+  /* Couleur de fond au survol */
+  color: #cbd6dc;
+}
 
+/* Style pour le texte d'ajout d'image */
 .addPictureTxt {
-	font-size: 10px;
-	margin-top: 7px;
-	margin-bottom: 19px;
-	color: #666;
-	cursor: default;
+  font-size: 10px;
+  margin-top: 7px;
+  margin-bottom: 19px;
+  color: #666;
+  cursor: default;
 }
 
+/* Style pour la section d'ajout de nouveau projet */
 #addNewProject {
-	display: flex;
-	flex-direction: column;
-	width: 65%;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
 }
 
+/* Style pour les labels dans l'ajout de projet */
 .addNewProjectLabel {
-     margin-top: 30px;
-	 margin-bottom: 10px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
+/* Style pour les champs de texte dans l'ajout de projet */
 #addNewProject input[type="text"] {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+/* Style pour le champ de sélection de catégorie */
 #category {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-	margin-bottom: 47px;
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-bottom: 47px;
 }
 
+/* Style pour la deuxième barre grise */
 .greyBar2 {
-	margin: 0px;
-	width: 100%;
-	background: #B3B3B3;
-	padding: 0.5px;
+  margin: 0px;
+  width: 100%;
+  background: #b3b3b3;
+  padding: 0.5px;
 }
 
+/* Style pour le bouton de validation */
 .btnValidate {
-	display: flex;
-	justify-content: center;
-	padding: 0px;
-	margin: 0px;
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
 }
 
 #btnValidate {
-	display: flex;
-	background: #A7A7A7;
-	color: #fff;
-	width: 50%;
-    height: 36px;
-	border: none;
-	border-radius: 60px;
-	cursor: pointer;
-	font-family: 'Syne';
-	font-size: 14px;
-	transition: all 0.3s ease;
-	margin-bottom: 35px;
+  display: flex;
+  background: #a7a7a7;
+  color: #fff;
+  width: 50%;
+  height: 36px;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  font-family: "Syne";
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin-bottom: 35px;
 }
 
 #btnValidate:hover {
-	background: #8e8e8e;
-	transform: scale(1.1);
+  background: #8e8e8e;
+  /* Couleur de fond au survol */
+  transform: scale(1.1);
+  /* Agrandit le bouton au survol */
 }
 
+/* Style pour les messages d'erreur */
 #error-message {
- 	color: red;
- 	font-size: 0.9em;
+  color: red;
+  font-size: 0.9em;
 }
 
 .error-message .hidden {
-	display: none;
+  display: none;
+  /* Cache les messages d'erreur cachés */
 }
 
+/* Style pour les boutons de filtre */
 .btnFilter {
-	display: flex;
-	gap: 10px;
-	margin: 50px;
-	justify-content: center;
+  display: flex;
+  gap: 10px;
+  margin: 50px;
+  justify-content: center;
 }
 
+/* Style pour les boutons de filtre */
 .filter-button {
-	background-color: white;
-	color: #1D6154;
-	text-align: center;
-	font-family: Syne;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
-	border-radius: 60px;
-	border: 1px solid #1D6154;
-	min-width: 100px;
-	height: 37px;
-	cursor: pointer;
+  background-color: white;
+  color: #1d6154;
+  text-align: center;
+  font-family: Syne;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border-radius: 60px;
+  border: 1px solid #1d6154;
+  min-width: 100px;
+  height: 37px;
+  cursor: pointer;
 }
 
 .filter-button:hover,
 .filter-button.active {
-	background-color: #1D6154;
-	color: #fff;
+  background-color: #1d6154;
+  /* Couleur de fond au survol */
+  color: #fff;
 }
 
+/* Style pour la galerie */
 .gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* Trois colonnes égales */
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
 .gallery figcaption {
-	margin-top: 10px;
-	cursor: default;
+  margin-top: 10px;
+  cursor: default;
 }
 
 .gallery img {
-	width: 100%;
+  width: 100%;
 }
+
+/* Style pour la section de contact */
 #contact {
-	width: 50%;
-margin: auto;
+  width: 50%;
+  margin: auto;
 }
+
 #contact > * {
-	text-align: center;
-
-}
-#contact h2{
-	margin-bottom: 20px;
-	cursor: default;
+  text-align: center;
 }
 
+/* Style pour le titre de la section de contact */
+#contact h2 {
+  margin-bottom: 20px;
+  cursor: default;
+}
+
+/* Style pour les paragraphes dans la section de contact */
 #contact p {
-	cursor: default;
+  cursor: default;
 }
 
+/* Style pour le formulaire de contact */
 #contact form {
-	text-align: left;
-	margin-top:30px;
-	display: flex;
-	flex-direction: column;
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Style pour les champs de texte dans le formulaire de contact */
 #contact input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-#contact label {
-	margin: 2em 0 1em 0;
-}
-#contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+/* Style pour les labels dans le formulaire de contact */
+#contact label {
+  margin: 2em 0 1em 0;
+}
+
+/* Style pour les zones de texte dans le formulaire de contact */
+#contact textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+/* Style pour le bouton d'envoi dans le formulaire de contact */
 .send {
-	font-family: "Syne";
-	font-weight: 700;
-	color: white;
-	background-color: #1d6154;
-	margin: 2em auto;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px;
-	cursor: pointer;
-	transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .send:hover,
 .send:active {
-	background-color: #145743;
-	transform: scale(1.05);
+  background-color: #145743;
+  /* Couleur de fond au survol */
+  transform: scale(1.05);
+  /* Agrandit le bouton au survol */
 }
 
+/* Style pour le menu de navigation dans le pied de page */
 footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em;
-	margin-top: 400px;
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
+  margin-top: 400px;
 }
 
+/* Style pour le lien de connexion en gras */
 #boldLogin {
-	font-weight: bold;
+  font-weight: bold;
 }
 
+/* Style pour la section de connexion */
 .login {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: default;
 }
 
-.form_connection{
-	display: flex;
-	flex-direction: column;
-	padding: 30px;
+/* Style pour le formulaire de connexion */
+.form_connection {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
 }
 
+/* Style pour les labels dans le formulaire de connexion */
 .form_connection label {
-	margin-top: 30px;
-	margin-bottom: 6px;
+  margin-top: 30px;
+  margin-bottom: 6px;
 }
 
-.form_connection #email {
-	width: 379px;
-	height: 51px;
-	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
-	border: transparent;
-}
-
+/* Style pour les champs d'email et de mot de passe dans le formulaire de connexion */
+.form_connection #email,
 .form_connection #password {
-	width: 379px;
-	height: 51px;
-	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
-	border: transparent;
+  width: 379px;
+  height: 51px;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  border: transparent;
 }
 
+/* Style pour le bouton de connexion */
 .form_connection .login_ok {
-	margin-top: 37px;
-	height: 36px;
-	border: transparent;
+  margin-top: 37px;
+  height: 36px;
+  border: transparent;
 }
 
+/* Style pour les liens dans le formulaire de connexion */
 .form_connection a {
-	text-align: center;
-	text-decoration-line: underline;
+  text-align: center;
+  text-decoration-line: underline;
 }
 
 .form_connection a:hover {
-	font-weight: bold;
+  font-weight: bold;
 }
 
+/* Style pour les messages d'erreur dans les formulaires */
 form div {
-	text-align: center;
-	font-size: 12px;
-	padding: 10px;
-	margin-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  margin-top: 10px;
 }
-
