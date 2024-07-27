@@ -52,12 +52,17 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 1440px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
 }
 header {
+	width: 1140px;
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
@@ -65,11 +70,16 @@ header {
 section {
 	margin: 50px 0
 }
+main {
+	width: 1140px;
+}
+
+footer {
+	width: 1140px;
+}
 
 #editionMode {
-	display: flex;
 	width: 100%;
-	height: 59px;
 	justify-content: center;
 	align-items: center;
 	background-color: #000;
@@ -235,9 +245,10 @@ li:hover {
 }
 
 .modal-figure {
-	width: 79.635px;
-	height: 141.881px;
+	width: 80px;
+	height: 107px;
 	position: relative;
+	margin-bottom: 17px;
 }
 
 .modal-figure img {
@@ -272,9 +283,10 @@ li:hover {
 }
 
 .greyBar1{
-	height: 1px;
 	width: 80%;
+	padding: 0.5px;
 	background: #B3B3B3;
+	margin-top: 40px;
 	margin-bottom: 32px;
 }
 
@@ -410,10 +422,10 @@ li:hover {
 }
 
 .greyBar2 {
-	height: 1px;
+	margin: 0px;
 	width: 100%;
 	background: #B3B3B3;
-	padding: 0px;
+	padding: 0.5px;
 }
 
 .btnValidate {
@@ -435,7 +447,7 @@ li:hover {
 	font-family: 'Syne';
 	font-size: 14px;
 	transition: all 0.3s ease;
-	margin-bottom: 55px;
+	margin-bottom: 35px;
 }
 
 #btnValidate:hover {
