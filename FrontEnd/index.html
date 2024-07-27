@@ -64,13 +64,13 @@
 				</div>
 				<h3 class="titleModal2">Ajout photo</h3>
 				<form id="addNewProject" action="http://localhost:5678/api/users/works" method="post" enctype="multipart/form-data">
-					<div class="addPictureBackground">
+					<div id="addPictureBackground" class="addPictureBackground">
 						<img id="previewImage" src="./assets/icons/picture-svgrepo-com.svg" alt="exemple de photo">
 						<label>
 							<span id="addPicture" class="addPicture">+ Ajouter photo</span>
 							<input type="file" id="image" name="image" accept="image/jpeg, image/png" hidden>
 						</label>
-						<p class="addPictureTxt">jpg, png : 4mo max</p>
+						<p id="addPictureTxt" class="addPictureTxt">jpg, png : 4mo max</p>
 					</div>
 					<label class="addNewProjectLabel" for="title">Titre</label>
 					<input type="text" name="title" id="title" required>
@@ -79,7 +79,9 @@
 					</select>
 					<div class="greyBar2"></div>
 					<div id="error-message" class="error-message hidden"></div>
+					<div class="btnValidate">
 					<input id="btnValidate" type="submit" value="Valider">
+					</div>
 				</form>		
 			</div>
 		</section>

@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Erreur lors de la récupération des projets');
             }
             const projects = await response.json();
-            console.log('Projects:', projects); // Affiche les projets récupérés pour débogage
             updateGallery(projects, categoryId); // Met à jour la galerie avec les projets récupérés
         } catch (error) {
             console.error('Erreur lors de la récupération des projets:', error);
@@ -58,8 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
         gallery.innerHTML = ''; // Réinitialiser le contenu de la galerie
         const modalGallery = document.getElementById("modalGallery");
         modalGallery.innerHTML = ''; // Réinitialiser le contenu de la galerie dans la modale
-
-        console.log('Updating gallery with projects:', projects); // Affiche les projets mis à jour pour débogage
 
         // Ajouter chaque projet à la galerie et à la galerie de la modale
         projects.forEach(work => {
@@ -120,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 figureElement.remove(); // Supprimer l'élément de la galerie
-                console.log(`Projet ${work.title} supprimé avec succès.`);
             } else {
                 // Gérer les erreurs en fonction du code de statut HTTP
                 if (response.status === 401) {
@@ -209,19 +205,26 @@ document.addEventListener('DOMContentLoaded', function() {
         fileInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
+                const btnValidate = document.getElementById('btnValidate');
+                const addPictureBackground = document.getElementById('addPictureBackground');
+                const addPictureBtn = document.getElementById('addPicture');
+                const addPictureTxt = document.getElementById('addPictureTxt');
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    previewImage.src = e.target.result;
+                previewImage.src = e.target.result;
+                addPictureBtn.style.display = 'none';
+                addPictureTxt.style.display = 'none';
+                previewImage.style.margin = '0';
+                addPictureBackground.style.padding = '0'
+                btnValidate.style.backgroundColor ='#1D6154'
                 };
                 reader.readAsDataURL(file);
-                console.log("Aperçu photo");
             }
         });
 
         // Configurer l'événement pour la soumission du formulaire
         form.addEventListener('submit', async function(event) {
             event.preventDefault(); // Empêcher la soumission par défaut du formulaire
-            console.log('Form Submitted');
 
             if (validateForm()) {
                 const formData = new FormData();
@@ -245,10 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         body: formData
                     });
 
-                    console.log('HTTP Status:', response.status);
-                    console.log('Response Headers:', response.headers);
                     const data = await response.json();
-                    console.log('Response Data:', data);
 
                     if (response.ok) {
                         form.reset(); // Réinitialiser le formulaire
@@ -280,7 +280,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.addEventListener('click', (event) => {
             if (event.target === modal) {
                 closeModal(); // Fermer la modale si l'utilisateur clique à l'extérieur
-                console.log("Fermer modals");
             }
         });
 
@@ -288,7 +287,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
                 closeModal();
-                console.log("Fermer modal");
             }
         });
     }
@@ -311,7 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'none'; // Cacher la modale
         modal1Content.style.display = 'none';
         modal2Content.style.display = 'none';
-        console.log("Fermer les modales");
     }
 
     // Fonction pour valider le formulaire avant envoi
@@ -319,10 +316,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const file = fileInput.files[0];
         const title = titleInput.value;
         const category = categoryInput.value;
-
-        console.log('Title:', title);
-        console.log('Category:', category);
-        console.log('File:', file);
 
         // Vérifier que tous les champs requis sont remplis
         if (title.trim() !== '' && category.trim() !== '' && file) {
