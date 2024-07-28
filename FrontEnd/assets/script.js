@@ -123,11 +123,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const allCategories = [{ id: null, name: "Tous" }, ...categories];
     let selectedButton = null;
 
-    allCategories.forEach((category) => {
+    allCategories.forEach((category, index) => {
       const buttonCtg = document.createElement("button");
       buttonCtg.id = category.id;
       buttonCtg.textContent = category.name;
       buttonCtg.classList.add("filter-button");
+
+       // Initialise le bouton "Tous" comme actif
+    if (index === 0) {
+      buttonCtg.classList.add("active");
+      selectedButton = buttonCtg;
+    }
 
       btnFilter.appendChild(buttonCtg); // Ajoute le bouton au conteneur des filtres
 

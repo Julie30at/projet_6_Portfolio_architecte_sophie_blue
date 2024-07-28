@@ -654,7 +654,6 @@ li:hover {
 .filter-button:hover,
 .filter-button.active {
   background-color: #1d6154;
-  /* Couleur de fond au survol */
   color: #fff;
 }
 
